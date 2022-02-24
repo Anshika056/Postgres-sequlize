@@ -12,9 +12,13 @@ app.get("/",(req,res)=>{
 })
 
 const db = require("./api/models");
-db.sequelize.sync({force: true}).then(()=>{
+db.sequelize.sync({alter: true}).then(()=>{
     console.log("data synced");
 }).catch(err=>console.log(err));
+
+
+require("./api/routes/actor")(app);
+require("./api/routes/movie")(app);
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT,()=>{

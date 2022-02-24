@@ -1,5 +1,5 @@
 module.exports=(sequelize,Sequelize)=>{
-const Actor = sequelize.define('users',{
+const Actor = sequelize.define('actor',{
     actor_id:{
         type:Sequelize.INTEGER,
         allowNull:false,
@@ -8,10 +8,11 @@ const Actor = sequelize.define('users',{
     },
     name:{
         type:Sequelize.STRING,
-        allowNull:false
+        allowNull:false,
+        unique:true
     }
 },{
-    freezeTablename:true
+    freezeTablename:true                //stop pluralize of thetable name in db
 }
 );
    return Actor;

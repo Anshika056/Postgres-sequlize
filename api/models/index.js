@@ -20,6 +20,17 @@ db.actor = require("../models/actor")(sequelize, Sequelize);
 db.movie = require("../models/movie")(sequelize, Sequelize);
 db.review = require("../models/review")(sequelize, Sequelize);
 
+db.actor.belongsToMany(db.movie,{
+    through:"actor_movie",
+    foreignKey: "actor_id",
+})
+
+db.movie.belongsToMany(db.actor,{
+    through:"actor_movie",
+    as: "actors",
+    foreignKey: "movieId",
+})
+
 module.exports = db;
 
 

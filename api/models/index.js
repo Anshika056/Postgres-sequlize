@@ -15,10 +15,10 @@ const db = {};
 
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
-const {DataTypes} = Sequelize
 
-
-db.users = require("../models/users")(sequelize, Sequelize);
+db.actor = require("../models/actor")(sequelize, Sequelize);
+db.movie = require("../models/movie")(sequelize, Sequelize);
+db.review = require("../models/review")(sequelize, Sequelize);
 
 module.exports = db;
 

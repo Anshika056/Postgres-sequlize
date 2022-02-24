@@ -1,6 +1,6 @@
 module.exports=(sequelize,Sequelize)=>{
-const User = sequelize.define('users',{
-    user_id:{
+const Actor = sequelize.define('users',{
+    actor_id:{
         type:Sequelize.INTEGER,
         allowNull:false,
         primaryKey:true,
@@ -9,19 +9,10 @@ const User = sequelize.define('users',{
     name:{
         type:Sequelize.STRING,
         allowNull:false
-    },
-    email:{
-        type:Sequelize.STRING,
-        allowNull:false,
-        unique:true
-    },
-    password:{
-        type:Sequelize.STRING,
-        allowNull:false
     }
 },{
     freezeTablename:true
 }
 );
-   return User;
+   return Actor;
 };

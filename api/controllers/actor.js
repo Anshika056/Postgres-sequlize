@@ -43,33 +43,42 @@ try{
 
 exports.findall = (req, res)=>{
     const name = req.query.name;
-    let condition = name ? {name: {[Op.iLike]:`%${name}%`}}: null;
+    let condition = name ? {name: {[Op.iLike]:`%${name}%`}}: null;   
     Actor.findAll({where:condition, include :['movies']})
     .then(data=>res.status(200).json(data))
     
-    .catch(err=>res.status(400).json({message: err||"Error retrieving movie"}));
+    .catch(err=>res.status(400).json(err));
 }
 
 
 exports.update = (req,res)=>{
-    try{
-    const id = req.params.id;
-    Actor.update(req.body,{where:{ actor_id:id }})
-    console.log("juh")
-    .then((num)=>{
-        console.log("ok")
+    
+     Actor.update(req.body,{where:{ id:req.params.id}})
+    .then(num=>{
         if(num==1){
-            res.status(201).json({message:"Updated successfully"})
-            console.log("ok")
+            res.status(201).json("Updated successfully")
         }
         else{
-            res.status(400).json({message: "Cannot update" })
+            res.status(400).json("not update")
         }
     })
-    .catch(err=>res.status(501).json({message:err.message || "error updating Actor with id: "+id}));
+    .catch(err=>res.status(501).json({message:err.message || "error updating Actor with id: "+req.params.id}));
 }
-    catch(err){
-        res.status(400).json(err)
-    }
-
+    
+exports.deleteactor = (req,res)=>{
+        // console.log("pi");
+    Actor.destroy({where:{
+        id:req.params.id
+    }})
+    .then((num)=>{
+        if(num==1){
+            res.status(200).json("actor deleted");
+        }
+        else{
+            res.status(400).json("not deleted");
+        }
+    })
+    .catch((err)=>{
+        res.status(400).json("error while deleting the actor");
+    })
 }

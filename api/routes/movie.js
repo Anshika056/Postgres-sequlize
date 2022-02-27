@@ -4,9 +4,9 @@ module.exports= app =>{
     const router = require("express").Router();
 
     //create
-    router.post("/",movie.create);
+    router.post("/create",movie.create);
 
 
 
-    app.use("/api",router);
+    app.use("/api/movie",router);
 }

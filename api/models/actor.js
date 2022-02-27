@@ -1,11 +1,11 @@
 module.exports=(sequelize,Sequelize)=>{
 const Actor = sequelize.define('actor',{
-    actor_id:{
-        type:Sequelize.INTEGER,
-        allowNull:false,
-        primaryKey:true,
-        autoIncrement:true
-    },
+    // actor_id:{
+    //     type:Sequelize.INTEGER,
+    //     allowNull:false,
+    //     primaryKey:true,
+    //     autoIncrement:true
+    // },
     name:{
         type:Sequelize.STRING,
         allowNull:false,

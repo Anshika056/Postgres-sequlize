@@ -4,7 +4,8 @@ module.exports=(sequelize,Sequelize)=>{
             type:Sequelize.STRING,
             allowNull:false
         },
-        plot:{type: Sequelize.STRING,
+        plot:{
+            type: Sequelize.STRING,
             allowNull:false
         },
 

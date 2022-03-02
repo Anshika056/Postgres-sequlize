@@ -19,6 +19,7 @@ db.sequelize.sync({alter: true}).then(()=>{
 
 require("./api/routes/actor")(app);
 require("./api/routes/movie")(app);
+require("./api/routes/review")(app);
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT,()=>{

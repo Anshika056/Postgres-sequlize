@@ -83,8 +83,6 @@ exports.deleteactor = (req,res)=>{
     })
 }
 
-
-
 exports.addMovie = (req, res) => {
     const movieId = req.body.movieId;
     const actorId = req.body.actorId;

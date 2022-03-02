@@ -31,6 +31,12 @@ db.movie.belongsToMany(db.actor,{
     foreignKey: "movieId",
 })
 
+db.movie.hasMany(db.review, {as:'review'});
+db.review.belongsTo(db.movie,{
+    foreignKey: "movieId", as: "movie",
+});
+
+
 module.exports = db;
 
 

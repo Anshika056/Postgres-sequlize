@@ -65,7 +65,7 @@ exports.deletemovie = (req,res)=>{
 exports.findone = (req, res)=>{
     const id = req.params.id;
 
-    Movie.findByPk(id,{include:['actors']})
+    Movie.findByPk(id,{include:['actors','review']})
     .then(data=>res.status(201).json(data))
     .catch(err=>res.status(501).json({message: err.message||"Error retrieving movie"}));
 }
@@ -83,7 +83,7 @@ exports.findall = (req,res) =>{
         },{
              plot:  {[Op.iLike]:`%${plot}%`}
         }]
-    }, include : ['actors']})
+    }, include : ['actors','review']})
     .then(data=>res.status(201).json(data))
     .catch(err=>res.status(501).json({message: err.message||"Error retrieving movies"}));
 }

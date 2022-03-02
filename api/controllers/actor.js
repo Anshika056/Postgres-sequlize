@@ -1,6 +1,6 @@
 const db = require("../models");
 const Actor = db.actor;
-const Movie = require("../models/movie");
+const Movie = db.movie;
 const Op = db.Sequelize.Op;
 
 exports.createactor = (req,res)=>{
@@ -82,3 +82,33 @@ exports.deleteactor = (req,res)=>{
         res.status(400).json("error while deleting the actor");
     })
 }
+
+
+
+exports.addMovie = (req, res) => {
+    const movieId = req.body.movieId;
+    const actorId = req.body.actorId;
+  
+    return Actor.findByPk(actorId)
+    
+      .then((actor) => {
+        console.log("io")
+        if (!actor) {
+          res.status(404).json({message:"Actor not found"})
+        }
+        console.log("ok")
+        return Movie.findByPk(movieId)
+        .then((movie) => {
+          if (!movie) {
+            res.status(404).json({message:"Movie not found"})
+          }
+  
+          actor.addMovie(movie);
+          res.status(201).json({message : `added Movie id=${movie.id} to Actor id=${actor.id}`})
+          return actor;
+        });
+      })
+      .catch((err) => {
+        res.status(500).json({message:err.message || "Error. Couldnot add movie to actor"})
+      });
+    }

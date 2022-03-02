@@ -22,7 +22,7 @@ db.review = require("../models/review")(sequelize, Sequelize);
 
 db.actor.belongsToMany(db.movie,{
     through:"actor_movie",
-    foreignKey: "actor_id",
+    foreignKey: "actorId",
 })
 
 db.movie.belongsToMany(db.actor,{

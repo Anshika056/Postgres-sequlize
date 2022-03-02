@@ -18,6 +18,8 @@ module.exports = app =>{
     //delete an actor
     router.delete("/delete/:id",actor.deleteactor);
 
+    router.post("/add",actor.addMovie)
+
     app.use('/api/actor', router);
 
 
